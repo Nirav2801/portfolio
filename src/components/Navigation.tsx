@@ -3,16 +3,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { PROFILE, NAV_LINKS } from "../data/constants";
+import { ProfileData } from "../types/profile";
 
 interface NavigationProps {
   onNavClick: (id: string) => void;
   onHomeClick: () => void;
+  profileData?: ProfileData;
 }
 
 export default function Navigation({
   onNavClick,
   onHomeClick,
+  profileData,
 }: NavigationProps) {
+  const data = profileData || PROFILE;
+
   return (
     <motion.nav
       className="fixed bottom-6 md:bottom-auto md:top-6 left-1/2 z-40 bg-white/80 backdrop-blur-2xl text-stone-900 pl-6 pr-2 py-2 rounded-full shadow-2xl border border-white/50 flex items-center gap-1 md:gap-2 max-w-[calc(100vw-32px)] md:max-w-none overflow-x-auto no-scrollbar"
@@ -24,7 +29,7 @@ export default function Navigation({
         onClick={onHomeClick}
         className="font-display font-bold tracking-tight pr-4 border-r border-stone-200 hover:text-blue-600 transition-colors mr-2 text-lg"
       >
-        {PROFILE.name.charAt(0)}.
+        {data.name.charAt(0)}.
       </button>
       {NAV_LINKS.map((link) => (
         <button

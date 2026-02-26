@@ -75,7 +75,9 @@ export interface GithubData {
 export interface ContactData {
   heading: string;
   headingHighlight: string;
-  status: string;
+  availabilityStatus: string;
+  email: string;
+  phone: string;
 }
 
 export interface ServiceData {
@@ -87,16 +89,22 @@ export interface FooterData {
   copyrightInfo: string;
 }
 
+export interface SocialLinkItem {
+  platform: string;
+  url: string;
+  handle?: string;
+  label?: string;
+  meta?: any;
+}
+
 export interface AppConstants {
   siteParams: SiteData;
   location: LocationData;
-  spotify: SpotifyData;
-  social: SocialData;
   stack: StackData;
   projectsSection: BaseSectionData;
   gallery: GalleryData;
-  github: GithubData;
   contact: ContactData;
   services: ServiceData;
   footer: FooterData;
+  socialLinks: SocialLinkItem[];
 }

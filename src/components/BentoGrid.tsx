@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { CONSTANTS } from "../data/constants";
 import { SectionId, Project } from "../types";
+import {
+  ProfileData,
+  DbLocationData,
+  DbContactData,
+  DbSocialLinkData,
+  DbProjectData,
+  DbSkillData,
+} from "../types/profile";
 import Navigation from "./Navigation";
 import DetailView from "./DetailView";
 import {
@@ -20,19 +28,33 @@ import {
 } from "./BentoCards";
 
 interface BentoGridProps {
-  setSelectedProject: (project: Project | null) => void;
+  setSelectedProject: (project: Project | DbProjectData | null) => void;
+  profileData?: ProfileData;
+  locationData?: DbLocationData;
+  contactData?: DbContactData;
+  socialLinks?: DbSocialLinkData[];
+  projectsData?: DbProjectData[];
+  skillsData?: DbSkillData[];
 }
 
-export default function BentoGrid({ setSelectedProject }: BentoGridProps) {
+export default function BentoGrid({
+  setSelectedProject,
+  profileData,
+  locationData,
+  contactData,
+  socialLinks,
+  projectsData,
+  skillsData,
+}: BentoGridProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  const handleCardClick = (id: string) => {
+  const handleCardClick = useCallback((id: string) => {
     setActiveSection(id);
-  };
+  }, []);
 
-  const closeSection = () => {
+  const closeSection = useCallback(() => {
     setActiveSection(null);
-  };
+  }, []);
 
   return (
     <>
@@ -42,6 +64,7 @@ export default function BentoGrid({ setSelectedProject }: BentoGridProps) {
           window.scrollTo({ top: 0, behavior: "smooth" });
           closeSection();
         }}
+        profileData={profileData}
       />
 
       <main className="max-w-7xl mx-auto py-8 md:pt-28 md:pb-12">
@@ -49,23 +72,27 @@ export default function BentoGrid({ setSelectedProject }: BentoGridProps) {
           <HeroCard
             activeSection={activeSection}
             onClick={() => handleCardClick(SectionId.ABOUT)}
+            profileData={profileData}
           />
-          <MapCard />
-          <SpotifyCard />
-          <SocialCard />
+          <MapCard locationData={locationData} />
+          <SpotifyCard socialLinks={socialLinks} />
+          <SocialCard socialLinks={socialLinks} />
           <StackCard
             activeSection={activeSection}
             onClick={() => handleCardClick(SectionId.SKILLS)}
+            skillsData={skillsData}
           />
           <ProjectsCard
             activeSection={activeSection}
             onClick={() => handleCardClick(SectionId.PROJECTS)}
+            projectsData={projectsData}
           />
           <GalleryCard />
-          <GithubCard />
+          <GithubCard socialLinks={socialLinks} />
           <ContactCard
             activeSection={activeSection}
             onClick={() => handleCardClick(SectionId.CONTACT)}
+            contactData={contactData}
           />
           <ServicesCard
             activeSection={activeSection}
@@ -85,7 +112,9 @@ export default function BentoGrid({ setSelectedProject }: BentoGridProps) {
           <DetailView
             id={activeSection}
             onClose={closeSection}
-            onSelectProject={setSelectedProject}
+            onSelectProject={setSelectedProject as any}
+            profileData={profileData}
+            projectsData={projectsData}
           />
         )}
       </AnimatePresence>

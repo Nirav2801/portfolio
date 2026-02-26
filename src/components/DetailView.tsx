@@ -1,38 +1,63 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  X,
-  Github,
-  ExternalLink,
-  ArrowRight,
-  MapPin,
-  Layers,
-  Mail,
-  Filter,
-  Globe,
-  Code,
-  Cpu,
-} from "lucide-react";
-import { PROFILE, SKILLS, PROJECTS } from "../data/constants";
+import { X, Layers, Mail, Globe, Code, Cpu } from "lucide-react";
+import { PROFILE, SKILLS, PROJECTS, CONSTANTS } from "../data/constants";
 import { SectionId, Project } from "../types/index";
+import { ProfileData, DbProjectData } from "../types/profile";
 import ProjectCard from "./ProjectCard";
+
+const SERVICES_DATA = [
+  {
+    title: "Full Stack E-Commerce",
+    desc: "End-to-end scalable platforms using Next.js, MedusaJS, and Stripe integrations.",
+    icon: <Globe size={20} />,
+  },
+  {
+    title: "Backend Architecture",
+    desc: "Robust API design and database management using PostgreSQL and Supabase.",
+    icon: <Cpu size={20} />,
+  },
+  {
+    title: "CMS Integration",
+    desc: "Setting up tailored headless CMS solutions using Payload CMS and Strapi.",
+    icon: <Layers size={20} />,
+  },
+  {
+    title: "Workflow Automation",
+    desc: "Streamlining business processes and data syncing with custom n8n automations.",
+    icon: <Code size={20} />,
+  },
+];
+
+const BG_COLORS: Record<string, string> = {
+  [SectionId.SKILLS]: "bg-[#eff6ff]", // blue-50
+  [SectionId.SERVICES]: "bg-[#eff6ff]", // blue-50
+  [SectionId.CONTACT]: "bg-stone-100",
+  [SectionId.PROJECTS]: "bg-[#f0f0f0]",
+};
 
 interface DetailViewProps {
   id: string;
   onClose: () => void;
   onSelectProject: (project: Project) => void;
+  profileData?: ProfileData;
+  projectsData?: DbProjectData[];
 }
 
 const DetailView: React.FC<DetailViewProps> = ({
   id,
   onClose,
   onSelectProject,
+  profileData,
+  projectsData,
 }) => {
+  const data = profileData || PROFILE;
+  const projectCount =
+    projectsData && projectsData.length > 0 ? projectsData.length : "50+";
   const [activeFilter, setActiveFilter] = useState<string>("All");
 
   const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    PROJECTS.forEach((project) => project.tags.forEach((tag) => tags.add(tag)));
+    const tags = new Set<string>(PROJECTS.flatMap((p) => p.tags));
     return ["All", ...Array.from(tags)];
   }, []);
 
@@ -50,21 +75,21 @@ const DetailView: React.FC<DetailViewProps> = ({
             <div className="mb-10 text-center">
               <div className="inline-block w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6">
                 <img
-                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${PROFILE.name}&backgroundColor=b6e3f4`}
+                  src="/avatar-macbook.png"
                   alt="Avatar"
-                  className="w-full h-full"
+                  className="w-full h-full object-contain scale-150"
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-display font-bold text-stone-900 mb-2">
-                {PROFILE.name}
+                {data.name}
               </h1>
               <p className="text-lg text-stone-500 font-medium">
-                {PROFILE.tagline}
+                {data.tagline}
               </p>
             </div>
 
             <div className="prose prose-lg prose-stone mx-auto">
-              <p className="leading-relaxed text-stone-600">{PROFILE.bio}</p>
+              <p className="leading-relaxed text-stone-600">{data.bio}</p>
               <p className="leading-relaxed text-stone-600 mt-4">
                 I believe in the web as a platform for creativity and utility.
                 My journey started with simple HTML pages and has evolved into
@@ -75,13 +100,17 @@ const DetailView: React.FC<DetailViewProps> = ({
 
             <div className="mt-12 grid grid-cols-2 gap-4">
               <div className="p-6 bg-stone-50 rounded-2xl border border-stone-100 text-center">
-                <h3 className="font-bold text-stone-900 mb-1">5+ Years</h3>
+                <h3 className="font-bold text-stone-900 mb-1">
+                  {data.experience || "2+ years"}
+                </h3>
                 <p className="text-xs text-stone-500 uppercase tracking-wider">
                   Experience
                 </p>
               </div>
               <div className="p-6 bg-stone-50 rounded-2xl border border-stone-100 text-center">
-                <h3 className="font-bold text-stone-900 mb-1">50+</h3>
+                <h3 className="font-bold text-stone-900 mb-1">
+                  {projectCount}
+                </h3>
                 <p className="text-xs text-stone-500 uppercase tracking-wider">
                   Projects
                 </p>
@@ -212,28 +241,7 @@ const DetailView: React.FC<DetailViewProps> = ({
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Full Stack E-Commerce",
-                  desc: "End-to-end scalable platforms using Next.js, MedusaJS, and Stripe integrations.",
-                  icon: <Globe size={20} />,
-                },
-                {
-                  title: "Backend Architecture",
-                  desc: "Robust API design and database management using PostgreSQL and Supabase.",
-                  icon: <Cpu size={20} />,
-                },
-                {
-                  title: "CMS Integration",
-                  desc: "Setting up tailored headless CMS solutions using Payload CMS and Strapi.",
-                  icon: <Layers size={20} />,
-                },
-                {
-                  title: "Workflow Automation",
-                  desc: "Streamlining business processes and data syncing with custom n8n automations.",
-                  icon: <Code size={20} />,
-                },
-              ].map((s, i) => (
+              {SERVICES_DATA.map((s, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -274,7 +282,7 @@ const DetailView: React.FC<DetailViewProps> = ({
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
-                  href={`mailto:${PROFILE.email}`}
+                  href={`mailto:${CONSTANTS.contact.email}`}
                   className="w-full sm:w-auto px-8 py-4 bg-stone-900 text-white rounded-full font-bold text-lg hover:bg-stone-800 transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95 shadow-xl shadow-stone-900/20"
                 >
                   <Mail size={20} />
@@ -294,20 +302,7 @@ const DetailView: React.FC<DetailViewProps> = ({
   };
 
   // Determine background color
-  const getBgColor = () => {
-    switch (id) {
-      case SectionId.SKILLS:
-        return "bg-[#eff6ff]"; // blue-50
-      case SectionId.SERVICES:
-        return "bg-[#eff6ff]"; // blue-50
-      case SectionId.CONTACT:
-        return "bg-stone-100";
-      case SectionId.PROJECTS:
-        return "bg-[#f0f0f0]";
-      default:
-        return "bg-white";
-    }
-  };
+  const getBgColor = useCallback(() => BG_COLORS[id] || "bg-white", [id]);
 
   const contentClasses =
     id === SectionId.PROJECTS || id === SectionId.CONTACT ? "h-full" : "";

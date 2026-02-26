@@ -1,0 +1,1 @@
+ALTER TABLE "profile" ADD COLUMN "experience" varchar(50) NOT NULL;

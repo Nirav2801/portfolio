@@ -1,15 +1,37 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "../types";
 import Modal from "./Modal";
-import MinimalView from "./MinimalView";
-import ViewToggle from "./ViewToggle";
 import BentoGrid from "./BentoGrid";
+import {
+  ProfileData,
+  DbLocationData,
+  DbContactData,
+  DbSocialLinkData,
+  DbProjectData,
+  DbSkillData,
+} from "../types/profile";
 
-export default function PortfolioContainer() {
+export default function PortfolioContainer({
+  profileData,
+  locationData,
+  contactData,
+  socialLinks,
+  projectsData,
+  skillsData,
+}: {
+  profileData?: ProfileData;
+  locationData?: DbLocationData;
+  contactData?: DbContactData;
+  socialLinks?: DbSocialLinkData[];
+  projectsData?: DbProjectData[];
+  skillsData?: DbSkillData[];
+}) {
   const [viewMode, setViewMode] = useState<"grid" | "minimal">("grid");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    Project | DbProjectData | null
+  >(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -17,33 +39,26 @@ export default function PortfolioContainer() {
 
   return (
     <div className="relative">
-      <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+      {/* <ViewToggle viewMode={viewMode} setViewMode={setViewMode} /> */}
 
       <AnimatePresence mode="wait">
-        {viewMode === "minimal" ? (
-          <motion.div
-            key="minimal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 w-full"
-          >
-            <MinimalView
-              onSwitch={() => setViewMode("grid")}
-              onSelectProject={setSelectedProject}
-            />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="grid"
-            className="min-h-screen p-4 md:p-6 pb-32"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <BentoGrid setSelectedProject={setSelectedProject} />
-          </motion.div>
-        )}
+        <motion.div
+          key="grid"
+          className="min-h-screen p-4 md:p-6 pb-32"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <BentoGrid
+            setSelectedProject={setSelectedProject}
+            profileData={profileData}
+            locationData={locationData}
+            contactData={contactData}
+            socialLinks={socialLinks}
+            projectsData={projectsData}
+            skillsData={skillsData}
+          />
+        </motion.div>
       </AnimatePresence>
 
       <Modal

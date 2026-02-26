@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
     title: "TreadCommand",
     description:
       "A comprehensive mobile tire service platform combining a Medusa-based e-commerce API with PayloadCMS admin dashboard.",
-    tags: ["Node.js", "Next.js", "Medusa.js", "Payload CMS", "PostgreSQL"],
+    tags: ["Node.js", "Next.js", "MedusaJS", "Payload", "PostgreSQL"],
     imageUrl: "https://picsum.photos/800/600?random=1",
     details:
       "Features advanced Fleet & Technician Management System with real-time scheduling using Nylas API, mobile van capacity tracking, and automated route optimization through Routific API. Built sophisticated Geographic Service Coverage with polygon-based service area definitions.",
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     title: "Lisco E-Commerce",
     description:
       "A scalable e-commerce platform specializing in printers, inks, and AMC services.",
-    tags: ["Next.js", "Medusa.js", "Payload CMS", "PostgreSQL"],
+    tags: ["Next.js", "MedusaJS", "Payload", "PostgreSQL"],
     imageUrl: "https://picsum.photos/800/600?random=3",
     details:
       "Led the end-to-end development of both frontend and backend, building RESTful APIs, dynamic filters, and a responsive, user-friendly UI. Integrated SEO best practices, Google Analytics, and deployed on Coolify.",
@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
     title: "Yogateria",
     description:
       "A scalable e-commerce platform using Medusa.js and Builder.io.",
-    tags: ["Next.js", "Medusa.js", "Builder.io", "Payload CMS", "PostgreSQL"],
+    tags: ["Next.js", "MedusaJS", "Builder.io", "Payload", "PostgreSQL"],
     imageUrl: "https://picsum.photos/800/600?random=5",
     details:
       "Integrated Builder.io and Payload for real-time UI customization, TinyERP for inventory management, Tapfiliate for affiliate marketing, and PagBank for secure payments.",
@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
     title: "Jewel",
     description:
       "Dynamic and user-friendly website for non-technical clients using Medusa and Payload CMS.",
-    tags: ["Next.js", "Medusa.js", "Payload CMS", "PostgreSQL"],
+    tags: ["Next.js", "MedusaJS", "Payload", "PostgreSQL"],
     imageUrl: "https://picsum.photos/800/600?random=7",
     details:
       "Integrated Medusa and Payload CMS for a responsive UI and easy content management. Product listings synced automatically, allowing full creative control over the website's appearance.",
@@ -103,11 +103,13 @@ export const SKILLS: SkillCategory[] = [
       "Tailwind CSS",
       "HTML5/CSS3",
       "React Native",
+      "Redux",
+      "Builder.io",
     ],
   },
   {
     name: "Backend",
-    skills: ["Node.js", "MedusaJS", "REST APIs"],
+    skills: ["Node.js", "MedusaJS", "REST APIs", "GraphQL"],
   },
   {
     name: "Database & CMS",
@@ -122,12 +124,10 @@ export const SKILLS: SkillCategory[] = [
 export const PROFILE = {
   name: "Nirav Patel",
   role: "Fullstack Developer",
+  experience: "2 years",
   tagline:
     "Building scalable e-commerce applications and interactive web experiences",
-  availabilityStatus: "Available",
   bio: "Fullstack Developer with 2 years of experience building scalable applications using Next.js, React, Node.js, and PostgreSQL. Experienced in startup environments, delivering production-ready platforms using modern tools like Supabase, MedusaJS, Payload and Strapi CMS.",
-  location: "Belcamp, MD",
-  email: "niravpatel280103@gmail.com",
   titleHighlight: "Developer.",
   description:
     "Crafting digital experiences with Next.js, Node.js, and scalable architectures.",
@@ -142,27 +142,13 @@ export const CONSTANTS: AppConstants = {
   },
   location: {
     city: "Belcamp, MD",
-    timezone: "EST",
+    timezone: "New York",
     mapUrl:
       "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=600&auto=format&fit=crop",
-  },
-  spotify: {
-    status: "On Repeat",
-    song: "Coding Focus Mix",
-    url: "#",
-  },
-  social: {
-    label: "LinkedIn",
-    handle: "@niravpatel28",
-    url: "https://www.linkedin.com/in/niravpatel28/",
   },
   stack: {
     title: "Stack",
     technologies: ["Next.js", "React", "Node.js", "PostgreSQL"],
-  },
-  projectsSection: {
-    title: "Projects",
-    subtitle: "Selected works & experiments",
   },
   gallery: {
     title: "Aesthetics",
@@ -170,19 +156,37 @@ export const CONSTANTS: AppConstants = {
     imageUrl:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
   },
-  github: {
-    commits: "240+",
-    label: "Commits this year",
-    url: "https://github.com/Nirav2801",
-  },
   contact: {
     heading: "Have a project",
     headingHighlight: "in mind?",
-    status: "Available",
+    availabilityStatus: "Available",
+    email: "niravpatel280103@gmail.com",
+    phone: "+91 9313463530",
   },
+  socialLinks: [
+    {
+      platform: "spotify",
+      url: "#",
+      meta: { status: "On Repeat", song: "Coding Focus Mix" },
+    },
+    {
+      platform: "linkedin",
+      url: "https://www.linkedin.com/in/niravpatel28/",
+      handle: "@niravpatel28",
+    },
+    {
+      platform: "github",
+      url: "https://github.com/Nirav2801",
+      meta: { commits: "200+", label: "Commits this year" },
+    },
+  ],
   services: {
     title: "Services",
     category: "Full Stack Development & E-Commerce Solutions",
+  },
+  projectsSection: {
+    title: "Projects",
+    subtitle: "Selected works & experiments",
   },
   footer: {
     copyrightInfo: "Nirav Patel. All Rights Reserved.",

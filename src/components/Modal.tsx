@@ -1,12 +1,12 @@
-
-import React, { useEffect, useRef } from 'react';
-import { X, ExternalLink, Github } from 'lucide-react';
-import { Project } from '../types/index';
+import React, { useEffect, useRef } from "react";
+import { X, ExternalLink, Github } from "lucide-react";
+import { Project } from "../types/index";
+import { DbProjectData } from "../types/profile";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  project: Project | null;
+  project: Project | DbProjectData | null;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
@@ -14,19 +14,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
@@ -70,13 +70,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
         {/* Content */}
         <div className="p-8 md:p-10 overflow-y-auto">
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map(tag => (
-              <span key={tag} className="text-xs font-bold uppercase tracking-wider bg-blue-50 text-blue-900 px-3 py-1 rounded-lg border border-blue-100">
+            {(project as any).tags?.map((tag: string) => (
+              <span
+                key={tag}
+                className="text-xs font-bold uppercase tracking-wider bg-blue-50 text-blue-900 px-3 py-1 rounded-lg border border-blue-100"
+              >
                 {tag}
               </span>
             ))}
           </div>
-          
+
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-stone-900">
             {project.title}
           </h2>
