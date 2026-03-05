@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       {
         query_embedding: embeddedQuestion,
         match_count: 5, // Retrieve top 5 most relevant chunks
-        filter: {}, // Optional: specify any metadata filters
+        filter: {}, // Optional: specify any metadata filtersc
       },
     );
 
