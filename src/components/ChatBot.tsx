@@ -230,28 +230,36 @@ export default function ChatBot() {
         </AnimatePresence>
 
         {/* Toggle Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsOpen(!isOpen)}
-          className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-white transition-all duration-300 z-50 ${
-            isOpen
-              ? "bg-stone-900 rotate-90"
-              : "bg-blue-600 hover:bg-blue-700 hover:shadow-blue-600/30"
-          }`}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={isOpen ? "close" : "chat"}
-              initial={{ opacity: 0, rotate: -90 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 90 }}
-              transition={{ duration: 0.2 }}
-            >
-              {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-            </motion.div>
-          </AnimatePresence>
-        </motion.button>
+        <div className="relative flex items-center justify-center">
+          {/* Ring Animation */}
+          {!isOpen && (
+            <span className="absolute w-14 h-14 rounded-full bg-blue-500/20 animate-ping" />
+          )}
+
+          {/* Button */}
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(!isOpen)}
+            className={`relative w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 z-10 ${
+              isOpen
+                ? "bg-stone-900 rotate-90"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isOpen ? "close" : "chat"}
+                initial={{ opacity: 0, rotate: -90, scale: 0.8 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 90, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
+              </motion.div>
+            </AnimatePresence>
+          </motion.button>
+        </div>
       </div>
     </>
   );
