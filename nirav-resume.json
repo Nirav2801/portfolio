@@ -1,0 +1,113 @@
+{
+  "basics": {
+    "name": "NIRAV PATEL",
+    "email": "nirav.patel.2813@gmail.com",
+    "phone": "+1 (443) 206-8894",
+    "website": "https://nirav-patel-dev.vercel.app",
+    "summary": "Full Stack Developer with 2 years of experience building scalable web applications and product-focused projects using modern web frameworks, server-side technologies, and relational databases. Skilled in frontend and backend development, delivering production-ready solutions in fast-paced environments. Proficient in AI-assisted development tools to accelerate workflows, enhance code quality, and improve engineering efficiency.",
+    "location": {
+      "city": "Belcamp",
+      "region": "MD"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://github.com/Nirav2801"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://linkedin.com/in/niravpatel28"
+      }
+    ]
+  },
+  "education": [
+    {
+      "institution": "LDRP-ITR",
+      "location": "Gandhinagar, India",
+      "area": "Computer Engineering",
+      "studyType": "Bachelor of Engineering (B.E.)",
+      "startDate": "2020",
+      "endDate": "2024"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "keywords": ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"]
+    },
+    {
+      "category": "Frontend Technologies",
+      "keywords": ["Next.Js", "React.Js", "Tailwind CSS", "React Native"]
+    },
+    {
+      "category": "Backend Technologies",
+      "keywords": ["Node.js", "MedusaJS", "REST APIs"]
+    },
+    {
+      "category": "CMS Platforms",
+      "keywords": ["Payload", "Strapi"]
+    },
+    {
+      "category": "Databases",
+      "keywords": ["PostgreSQL", "Supabase", "MongoDB"]
+    },
+    {
+      "category": "Tools",
+      "keywords": [
+        "Git",
+        "GitHub",
+        "Postman",
+        "Google Antigravity",
+        "Cursor",
+        "Github Copilot",
+        "Claude",
+        "SpecKit",
+        "Vercel Deployment",
+        "Google Analytics"
+      ]
+    },
+    {
+      "category": "Automation & Workflows",
+      "keywords": ["n8n (Workflow Automation)"]
+    }
+  ],
+  "work": [
+    {
+      "company": "The Special Character",
+      "position": "Software Developer",
+      "location": "Ahmedabad, Gujarat",
+      "startDate": "2024",
+      "endDate": "2026",
+      "highlights": [
+        "Developed and maintained a e-commerce platform using Next.js and MedusaJS (Node.js-based) for backend services.",
+        "Worked with PostgreSQL for product, order, and user data management with efficient querying and schema handling.",
+        "Implemented RESTful APIs within MedusaJS backend.",
+        "Built dynamic product listings, filtering, cart, and checkout workflows.",
+        "Integrated payment gateways and third-party services for shipping and analytics.",
+        "Managed structured and dynamic content using Payload CMS and Strapi, enabling non-technical teams to control product and marketing content efficiently.",
+        "Gained basic exposure to Docker and used Git/GitHub for version control and collaborative development.",
+        "Contributed to Next.js SEO optimization, performance tuning, and structured metadata implementation for better search visibility.",
+        "Leveraged AI-assisted development tools such as GitHub Copilot, Cursor, Claude, and Google Antigravity to accelerate development, improve code quality, and enhance productivity.",
+        "Explored modern AI-powered development workflows including Spec-driven development (SpecKit) and rapid UI generation tools like Google Stitch.",
+        "Built workflow automations using n8n.",
+        "Continuously researched and applied AI-assisted coding, automation, and workflow optimization techniques to improve engineering efficiency."
+      ]
+    },
+    {
+      "company": "The Special Character",
+      "position": "Software Developer Intern",
+      "location": "Ahmedabad, Gujarat",
+      "startDate": "2023",
+      "endDate": "2024",
+      "highlights": [
+        "Developed responsive and mobile-first web interfaces using HTML5 and CSS3, ensuring cross-browser compatibility and adherence to modern UI/UX best practices.",
+        "Implemented interactive client-side features using JavaScript (ES6+), including DOM manipulation, form validation, dynamic rendering, and event-driven behaviors.",
+        "Developed multi-page and dynamic web applications using Next.js, leveraging file-based routing, optimized navigation, and Server-Side Rendering (SSR) for improved performance and SEO.",
+        "Built reusable and modular UI components using React.js, applying component-based architecture, basic state management principles, and supportive libraries.",
+        "Integrated and consumed RESTful APIs to fetch and render dynamic data, handling loading states, error management, and data transformation on the frontend.",
+        "Assisted in debugging and troubleshooting UI issues, improving page load performance, and optimizing rendering efficiency.",
+        "Used Git and GitHub for version control and collaborative development."
+      ]
+    }
+  ]
+}
