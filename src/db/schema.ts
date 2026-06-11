@@ -6,7 +6,22 @@ import {
   uuid,
   primaryKey,
   jsonb,
+  bigserial,
+  customType,
 } from "drizzle-orm/pg-core";
+
+const pgVector = customType<{ data: number[] }>({
+  dataType() {
+    return "vector(768)";
+  },
+});
+
+export const documents = pgTable("documents", {
+  id: bigserial("id", { mode: "number" }).primaryKey(),
+  content: text("content").notNull(),
+  metadata: jsonb("metadata"),
+  embedding: pgVector("embedding"),
+});
 
 export const profile = pgTable("profile", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -60,6 +75,8 @@ export const projects = pgTable("projects", {
   details: text("details").notNull(),
   demoUrl: text("demoUrl"),
   repoUrl: text("repoUrl"),
+  role: text("role"),
+  module: text("module"),
 });
 
 export const skills = pgTable("skills", {

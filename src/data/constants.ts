@@ -13,12 +13,12 @@ export const PROJECTS: Project[] = [
     title: "TreadCommand",
     description:
       "A comprehensive mobile tire service platform combining a Medusa-based e-commerce API with PayloadCMS admin dashboard.",
-    tags: ["Node.js", "Next.js", "MedusaJS", "Payload", "PostgreSQL"],
+    tags: ["Payload", "Node.js", "Next.js", "MedusaJS", "PostgreSQL"],
     imageUrl: "https://picsum.photos/800/600?random=1",
     details:
       "Features advanced Fleet & Technician Management System with real-time scheduling using Nylas API, mobile van capacity tracking, and automated route optimization through Routific API. Built sophisticated Geographic Service Coverage with polygon-based service area definitions.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "2",
@@ -29,8 +29,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=2",
     details:
       "Allows residents to customize and preview their living spaces with real-time product swaps and layout changes. Supabase and Drizzle ORM are used for data storage, authentication, and enforcing multi-tenant separation through row-level security.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "3",
@@ -41,8 +41,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=3",
     details:
       "Led the end-to-end development of both frontend and backend, building RESTful APIs, dynamic filters, and a responsive, user-friendly UI. Integrated SEO best practices, Google Analytics, and deployed on Coolify.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "4",
@@ -52,8 +52,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=4",
     details:
       "Built with Medusa.js-PostgreSQL backend using Razorpay for payments and Delhivery for shipment tracking. Managed real-time customization of NFC cards with an intuitive admin interface.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "5",
@@ -64,8 +64,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=5",
     details:
       "Integrated Builder.io and Payload for real-time UI customization, TinyERP for inventory management, Tapfiliate for affiliate marketing, and PagBank for secure payments.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "6",
@@ -75,8 +75,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=6",
     details:
       "A paper-free alternative to conventional business cards, providing a frictionless, paperless way to manage and share contacts.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
   {
     id: "7",
@@ -87,8 +87,8 @@ export const PROJECTS: Project[] = [
     imageUrl: "https://picsum.photos/800/600?random=7",
     details:
       "Integrated Medusa and Payload CMS for a responsive UI and easy content management. Product listings synced automatically, allowing full creative control over the website's appearance.",
-    demoUrl: "#",
-    repoUrl: "#",
+    demoUrl: "",
+    repoUrl: "",
   },
 ];
 

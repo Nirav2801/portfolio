@@ -260,15 +260,6 @@ const MinimalView: React.FC<MinimalViewProps> = ({
                     </div>
                   </div>
                 </div>
-
-                {/* Hover Image Reveal */}
-                <div className="hidden md:block absolute top-1/2 right-[10%] -translate-y-1/2 w-[400px] aspect-[4/3] rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0 rotate-3 group-hover:rotate-6 scale-90 group-hover:scale-100">
-                  <img
-                    src={project.imageUrl}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
               </motion.div>
             ))}
           </div>

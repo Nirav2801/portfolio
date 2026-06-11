@@ -308,7 +308,7 @@ export const ProjectsCard = ({
       {activeSection !== SectionId.PROJECTS && (
         <motion.div
           layoutId={`card-${SectionId.PROJECTS}`}
-          className={`${cardClass} bg-stone-900 group overflow-hidden`}
+          className={`${cardClass} bg-stone-900 group overflow-hidden cursor-pointer`}
           onClick={onClick}
         >
           <div className="absolute inset-0 flex justify-end">

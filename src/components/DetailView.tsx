@@ -5,6 +5,7 @@ import { PROFILE, SKILLS, PROJECTS, CONSTANTS } from "../data/constants";
 import { SectionId, Project } from "../types/index";
 import { ProfileData, DbProjectData } from "../types/profile";
 import ProjectCard from "./ProjectCard";
+import CopyEmailButton from "./CopyEmailButton";
 
 const SERVICES_DATA = [
   {
@@ -288,9 +289,10 @@ const DetailView: React.FC<DetailViewProps> = ({
                   <Mail size={20} />
                   Send Email
                 </a>
-                <button className="w-full sm:w-auto px-8 py-4 bg-white text-stone-900 border border-stone-200 rounded-full font-bold text-lg hover:bg-stone-50 transition-all flex items-center justify-center gap-2 hover:border-stone-300">
-                  Copy Email
-                </button>
+                <CopyEmailButton
+                  email={CONSTANTS.contact.email}
+                  className="w-full sm:w-auto px-8 py-4 bg-white text-stone-900 border border-stone-200 rounded-full font-bold text-lg hover:bg-stone-50 transition-all flex items-center justify-center gap-2 hover:border-stone-300 active:scale-95"
+                />
               </div>
             </div>
           </div>

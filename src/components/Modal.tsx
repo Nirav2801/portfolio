@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { X, ExternalLink, Github } from "lucide-react";
+import { X, ExternalLink, Github, Lock } from "lucide-react";
 import { Project } from "../types/index";
 import { DbProjectData } from "../types/profile";
 
@@ -38,6 +38,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
 
   if (!isOpen || !project) return null;
 
+  const hasDemo = project.demoUrl && project.demoUrl !== "#" && project.demoUrl !== "";
+  const hasRepo = project.repoUrl && project.repoUrl !== "#" && project.repoUrl !== "";
+
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/60 backdrop-blur-sm p-4 transition-opacity duration-300"
@@ -51,45 +54,50 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
       >
-        {/* Header / Image */}
-        <div className="relative h-64 sm:h-80 bg-stone-100 shrink-0">
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
+        {/* Header / Text Info (No Image) */}
+        <div className="relative p-8 md:p-10 bg-gradient-to-br from-stone-50 via-stone-100/30 to-white border-b border-stone-200/40 shrink-0">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-stone-900 hover:bg-white hover:scale-110 transition-all shadow-lg"
+            className="absolute top-6 right-6 w-10 h-10 bg-stone-200/50 hover:bg-stone-200 rounded-full flex items-center justify-center text-stone-900 transition-all z-10"
             aria-label="Close modal"
           >
             <X size={20} />
           </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-8 md:p-10 overflow-y-auto">
-          <div className="flex flex-wrap gap-2 mb-6">
+          
+          <div className="flex flex-wrap gap-2 mb-4 pr-12">
             {(project as any).tags?.map((tag: string) => (
               <span
                 key={tag}
-                className="text-xs font-bold uppercase tracking-wider bg-blue-50 text-blue-900 px-3 py-1 rounded-lg border border-blue-100"
+                className="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-900 px-2.5 py-1 rounded-md border border-blue-100"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-stone-900">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 leading-tight">
             {project.title}
           </h2>
+        </div>
 
-          <p className="text-lg text-stone-600 leading-relaxed mb-10">
-            {project.details}
-          </p>
+        {/* Content */}
+        <div className="p-8 md:p-10 overflow-y-auto flex-grow flex flex-col justify-between">
+          <div>
+            <p className="text-base md:text-lg text-stone-600 leading-relaxed mb-8">
+              {project.details}
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-            {project.demoUrl && (
+            {/* Private Project Disclaimer */}
+            {!hasDemo && !hasRepo && (
+              <div className="p-4 rounded-xl bg-stone-50 border border-stone-200/60 text-stone-500 text-xs md:text-sm mb-6 flex gap-2.5 items-center">
+                <Lock size={14} className="text-stone-400 shrink-0" />
+                <span>Private Project: Source code and live demo are restricted under NDA.</span>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            {hasDemo && (
               <a
                 href={project.demoUrl}
                 target="_blank"
@@ -100,7 +108,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, project }) => {
                 <ExternalLink size={18} />
               </a>
             )}
-            {project.repoUrl && (
+            {hasRepo && (
               <a
                 href={project.repoUrl}
                 target="_blank"
